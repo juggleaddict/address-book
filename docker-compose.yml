@@ -1,7 +1,19 @@
-version: "3.7"
+version: "3.2"
 
 services:
+  #app:
+
   dynamodb:
-    build: amazon/dynamodb-local
+    image: cnadiminti/dynamodb-local
+    volumes: 
+      - ./.database:/dynamodb_local_db
+    ports:
+      - 8000:8000
+
   dynamodbGUI:
-  app:
+    image: aaronshaf/dynamodb-admin
+    environment:
+      DYNAMO_ENDPOINT: http://dynamodb:8000
+    ports:
+      - 8001:8001
+  
