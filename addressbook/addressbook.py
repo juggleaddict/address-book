@@ -1,13 +1,11 @@
 from flask import Flask
-from flask_restplus import Api, Resource
+
+from addressbook.routes import api
+from addressbook._cli import register_cli_commands
 
 app = Flask(__name__)
-api = Api(app)
-
-@api.route('/hello')
-class HelloWorld(Resource):
-    def get(self):
-        return {'hello': 'world'}
+api.init_app(app)
+register_cli_commands(app)
 
 if __name__ == '__main__':
     app.run(debug=True)
