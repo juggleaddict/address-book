@@ -10,9 +10,10 @@ api = Api()
 class ContactsResource(Resource):
 
     def get(self):
-        all_data = ContactsModel.scan()
+        all_data = [x for x in ContactsModel.scan()]
         print(all_data)
-        return None # todo: must deserialize
+        print(all_data[0].keys)
+        return None
 
     def post(self):
         data = request.form['data']

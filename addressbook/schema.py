@@ -16,12 +16,12 @@ class PhoneNumber(fields.Field):
     '''
     custom field for phone numbers
     '''
-    _serialize(self, value, attr, obj, **kwargs):
+    def _serialize(self, value, attr, obj, **kwargs):
         if value is None:
             return ""
-        return format(int(value[:-1]), ",").replace(",", "-") + value[-1]O
+        return format(int(value[:-1]), ",").replace(",", "-") + value[-1]
 
-    _deserialize(self, value, attr, obj, **kwargs):
+    def _deserialize(self, value, attr, obj, **kwargs):
         return 'TBD'
 
 class personSchema(Schema):
@@ -32,4 +32,4 @@ class personSchema(Schema):
     address = fields.Str()
     city = fields.Str()
     state = fields.Str()
-    created_at = fields.DateTime()
+    created_at = fields.DateTime(serialize objects using marshmallow)
